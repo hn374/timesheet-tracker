@@ -1,0 +1,13 @@
+.chartPageContainer {
+    background-color: white;
+    border-radius: 20px;
+    height: 700px;
+    width: 1000px;
+    color: black;
+}
+
+.dropZone {
+    background-color: gray;
+    height: 50px;
+    width: 200px;
+}
