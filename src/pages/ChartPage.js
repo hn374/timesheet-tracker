@@ -22,6 +22,15 @@ function ChartPage() {
     const [dates, setDates] = useState([]); // Set to all the dates
 
     // Create an object that has skill name, with a dictionary of date:hours
+    const [skillObjects, setSkillObjects] = useState([]);
+
+    var skillObject = {
+        name: "",
+        data: {
+            date: "date",
+            amountOfHours: "hours"
+        }
+    };
 
     const [data, setData] = useState({
         labels: ['January', 'February', 'March',
@@ -35,7 +44,18 @@ function ChartPage() {
             data: [65, 59, 80, 81, 56]
           }
         ]
-      });
+    });
+
+    // const [data, setData] = useState({
+    //     labels: labels,
+    //     dataSets: [{
+    //         label: 'Rainfall',
+    //         backgroundColor: 'rgba(75,192,192,1)',
+    //         borderColor: 'rgba(0,0,0,1)',
+    //         borderWidth: 2,
+    //         data: [65, 59, 80, 81, 56]
+    //     }]
+    // });
 
     function convertExcelToJson(event) {
         var files = event.target.files; // Grab all the work sheets from the excel file
@@ -66,11 +86,32 @@ function ChartPage() {
             console.log(skillLabels);
             setLabels(skillLabels);
 
-            // console.log("Skill Names", data[2]);
+            // Get all the dates
+            var row;
+            var datesArray = [];
+
+            for (row in data) {
+                if (Number.isInteger(data[row][0])) { // Check to see if it is a date
+                    var excelDate = excelDateToJavaScriptDate(data[row][0]);
+                    excelDateToJavaScriptDate(excelDate);
+                    // datesArray.push(excelDate); to push date objects
+
+                    // Push date strings
+                    var dateObject = (excelDate.getMonth() + 1) + "/" + excelDate.getDate();
+                    datesArray.push(dateObject);
+                }
+            }
+
+            setDates(datesArray);
+            console.log(datesArray);
+
         };
 
-        // reader.readAsDataURL(event.target.files[0]);
         reader.readAsBinaryString(fileSheet);
+    }
+
+    function excelDateToJavaScriptDate(date) {
+        return new Date(Math.round((date - 25569)*86400*1000));
     }
 
     return(
