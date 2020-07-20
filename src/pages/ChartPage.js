@@ -152,10 +152,14 @@ function ChartPage() {
         <div className="chartPageContainer">
             <h1>Time Sheet Charts</h1>
             <input
+                className="chooseFileButton"
                 accept=".xlsx"
                 type="file"
+                name="file"
+                id="file"
                 onChange={(event) => convertExcelToJson(event)}
             />
+            {/* <label for="file">Choose a file</label> */}
             {/* <Bar
             data={data}
             options={{

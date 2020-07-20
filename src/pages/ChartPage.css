@@ -6,8 +6,26 @@
     color: black;
 }
 
-.dropZone {
-    background-color: gray;
-    height: 50px;
-    width: 200px;
+/* .chooseFileButton {
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+} */
+
+.chooseFileButton + label {
+    border-radius: 20px;
+    font-size: 1em;
+    font-weight: 700;
+    color: black;
+    background-color: #BEE82E;
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px 15px;
+}
+
+.chooseFileButton:focus + label, .chooseFileButton + label:hover {
+    background-color: #C6FF04;
 }
